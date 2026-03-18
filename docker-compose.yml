@@ -1,0 +1,9 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: moody
+      POSTGRES_PASSWORD: moody
+      POSTGRES_DB: moody
+    ports:
+      - "5432:5432"
