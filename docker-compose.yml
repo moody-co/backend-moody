@@ -1,9 +1,19 @@
+version: '3.8'
+
 services:
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: moody
-      POSTGRES_PASSWORD: moody
-      POSTGRES_DB: moody
+  mysql:
+    image: mysql:8.0
+    container_name: moody-mysql
+    restart: always
     ports:
-      - "5432:5432"
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: moody_db
+      MYSQL_USER: moody_user
+      MYSQL_PASSWORD: moody_password
+    volumes:
+      - moody_mysql_data:/var/lib/mysql
+
+volumes:
+  moody_mysql_data:

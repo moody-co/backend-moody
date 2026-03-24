@@ -1,17 +1,10 @@
-import express from "express";
-import authRoutes from "./routes/auth.routes";
-import { errorMiddleware } from "./errors";
+import fastify from 'fastify';
 
-const app = express();
+export const app = fastify();
 
-app.use(express.json());
-
-app.get("/health", (_req, res) => {
-  res.json({ message: "API Rodando" });
+app.get('/health', async (request, reply) => {
+  return reply.status(200).send({ 
+    message: 'Moody API is running! 🚀', 
+    status: 'OK' 
+  });
 });
-
-app.use("/auth", authRoutes);
-
-app.use(errorMiddleware);
-
-export default app;
